@@ -91,7 +91,7 @@ form.addEventListener('submit', async (event) => {
         return false;
     }
     try {
-        const { data } = await axios.post('http://localhost:5000/signup', { username: usernameValue, password: passwordValue, email: emailValue });
+        const { data } = await axios.post('https://nsut-space2-production.up.railway.app/signup', { username: usernameValue, password: passwordValue, email: emailValue });
         const response = data;
         if (response.success) {
             message.innerText = "Sussesfully Registered\nRedirecting to the home page"

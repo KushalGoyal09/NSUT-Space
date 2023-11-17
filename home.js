@@ -40,7 +40,7 @@ const tweetContainer = document.getElementById('tweet-container');
 let tweetHtml = "";
 const render = async () => {
     try {
-        const { data } = await axios.get('http://localhost:5000/home');
+        const { data } = await axios.get('https://nsut-space2-production.up.railway.app/home');
         const tweets = data;
         tweets.forEach(tweet => {
             tweetHtml += `
@@ -107,7 +107,7 @@ const manageLike = async (tweetid) => {
     const like = tweet.querySelector('.like-btn');
     const likeCount = tweet.querySelector('.like-count');
     try {
-        const { data } = await axios.post(`http://localhost:5000/home/${tweetid}/like`, { userid });
+        const { data } = await axios.post(`https://nsut-space2-production.up.railway.app/home/${tweetid}/like`, { userid });
         if (data.likes === 1) {
             like.classList.add("fa-solid")
             like.classList.remove("fa-regular");
@@ -138,7 +138,7 @@ const showSingleTweet = async (key) => {
     scrollTop = window.scrollY;
     tweetContainer.style.display = "none";
     singleTweetContainer.style.display = "block";
-    const { data } = await axios.get(`http://localhost:5000/home/${key}`);
+    const { data } = await axios.get(`https://nsut-space2-production.up.railway.app/home/${key}`);
     const tweet = data.tweet;
     const comments = data.comments;
     singleTweetContainer.innerHTML = `
@@ -214,7 +214,7 @@ const showSingleTweet = async (key) => {
             popupText.innerHTML = `Login first to comment <br> Click <a id="login-link" href="./login.html">here</a> to log in`
             return;
         }
-        const { data } = await axios.post(`http://localhost:5000/home/${key}/comment`, { userid, username, text: commentInput.value });
+        const { data } = await axios.post(`https://nsut-space2-production.up.railway.app/home/${key}/comment`, { userid, username, text: commentInput.value });
         commentInput.value = "";
         const comment = data.comment;
         const newComment = document.createElement('div');

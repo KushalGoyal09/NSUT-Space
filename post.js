@@ -29,9 +29,9 @@ postBtn.addEventListener('click', async () => {
         message.textContent = "Can not post a empty message";
         message.style.color = "red";
         return;
-    }       
+    }
     try {
-        await axios.post("http://localhost:5000/tweet", { user: userid, text: tweetInputValue });
+        await axios.post("https://nsut-space2-production.up.railway.app/tweet", { user: userid, text: tweetInputValue });
         message.textContent = "Your message has been posted";
         message.style.color = "green";
         tweetInput.value = "";
@@ -46,11 +46,11 @@ const generatePost = document.getElementById('generate-post');
 generatePost.addEventListener('click', async () => {
     const tweetInputValue = tweetInput.value;
     const trimmedTweet = tweetInputValue.trim();
-    if(!trimmedTweet) {
+    if (!trimmedTweet) {
         return
     }
     try {
-        const {data} = await axios.post("http://localhost:5000/tweet/generate", {topic:trimmedTweet})
+        const { data } = await axios.post("https://nsut-space2-production.up.railway.app/tweet/generate", { topic: trimmedTweet })
         tweetInput.value = data.content;
     } catch (error) {
         message.textContent = "An unexpected error occured";
